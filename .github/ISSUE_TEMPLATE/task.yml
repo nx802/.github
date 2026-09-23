@@ -1,0 +1,28 @@
+name: 小タスク（Task）
+description: 挙動を変えない小さい作業。リファクタ・設定変更・タイポ修正など。本文は課題と観測事項だけ。
+title: "[task] "
+labels: ["task"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **挙動を変える変更には使わない。** 仕様が要るものは「仕様（Spec）」を使う。
+
+        本文には課題と観測事項だけを書く。やり方と完了条件は、FDO が GitHub App
+        （`fdo-acala[bot]`）からコメントで提案する。
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 内容
+      description: 何が困っているか。なぜ手を入れたいか。
+    validations:
+      required: true
+
+  - type: textarea
+    id: observations
+    attributes:
+      label: 観測事項
+      description: 確かめた事実。ファイル・件数・再現手順など。
+    validations:
+      required: false

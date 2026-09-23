@@ -1,0 +1,57 @@
+name: 仕様（Spec）
+description: 挙動を変える変更の課題。本文は課題と観測事項だけ。実装の提案は FDO がコメントで書く。
+title: "[spec] "
+labels: ["spec"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **この issue の本文には、課題と観測事項だけを書く。** 実装の提案（方針・受け入れ条件・
+        テストケース・変更確認）は、FDO が GitHub App（`fdo-acala[bot]`）からコメントで書く。
+        要求と提案の書き手を分けるため。レビュー済みの提案コメントが実装の入力になる。
+
+        提案コメントは次の見出しで書く。
+
+        ```
+        ## 方針
+        ## 受け入れ条件（Given / When / Then）
+        ## テストケース一覧（保護のためのテスト）
+        ## 変更確認（この変更のときに1回だけ）
+        ## 範囲外
+        ```
+
+        - 受け入れ条件は pass/fail で判定できる形にする。曖昧な条件はAIに対して機能しない
+        - 未確定のことは埋めずに `NEEDS CLARIFICATION:` と書いて残す。埋めるとAIが勝手に決める
+        - **テストケース一覧を提案コメントに書き、承認を得てから実装に着手する。**
+          Discordやチャットに出して終わりにしない（記録が残らず後から検証できない）
+        - **保護のためのテストか変更確認かは「守るべき要件か」で分ける。** 設計によって
+          変わりうる仕様（形式・並び順・状態の名前・選び方）は保護の対象にしない。
+          テストを1本書く前に、どの要件を守るのかを言えるか確かめる
+        - テストケースの表は `| テスト関数名 | 投入 | 期待値 |` の3列。現実に起きる値を入れ、具体的な期待値で書く
+        - 恒久的な仕様と決定の理由は、マージ前に `docs/` へ移す
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 概要
+      description: 何が困っているか。1文で。
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: 背景・課題
+      description: なぜ問題か。どの利用場面で困るか。
+    validations:
+      required: true
+
+  - type: textarea
+    id: observations
+    attributes:
+      label: 観測事項
+      description: |
+        実際に起きていること。入力・出力・件数・再現手順など、確かめた事実だけを書く。
+        解決策はここに書かない（提案コメントで書く）。
+    validations:
+      required: false
